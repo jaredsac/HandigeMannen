@@ -15,7 +15,7 @@ if(isset($_POST['form_login'])){
 
   if($database_gegevens != FALSE){
 
-        if($database_gegevens['password'] == $password){
+        if($database_gegevens['Wachtwoord'] == $password){
             echo'gebruiker mag inloggen!';
         }
   }
