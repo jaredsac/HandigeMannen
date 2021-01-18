@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 18 jan 2021 om 11:39
+-- Gegenereerd op: 18 jan 2021 om 15:52
 -- Serverversie: 10.4.8-MariaDB
 -- PHP-versie: 7.3.11
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `handigemannen`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `klussen`
+--
+
+CREATE TABLE `klussen` (
+  `ID` int(11) NOT NULL,
+  `Klussen` varchar(30) NOT NULL,
+  `Klant` varchar(30) NOT NULL,
+  `Plaats` varchar(40) NOT NULL,
+  `Datum` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `klussen`
+--
+
+INSERT INTO `klussen` (`ID`, `Klussen`, `Klant`, `Plaats`, `Datum`) VALUES
+(1, 'Behang Ophangen', 'Annabella Steenhuizen', 'Amsterdam-Zuidoost', '2021-01-19'),
+(2, 'Laminaat zetten', 'Annabell Steenhoeven', 'Amsterdam-Zuidoost', '2021-01-21');
 
 -- --------------------------------------------------------
 
@@ -50,6 +72,12 @@ INSERT INTO `users` (`ID`, `VoorNaam`, `AchterNaam`, `Email`, `Wachtwoord`, `Soo
 --
 
 --
+-- Indexen voor tabel `klussen`
+--
+ALTER TABLE `klussen`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexen voor tabel `users`
 --
 ALTER TABLE `users`
@@ -58,6 +86,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
+
+--
+-- AUTO_INCREMENT voor een tabel `klussen`
+--
+ALTER TABLE `klussen`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
