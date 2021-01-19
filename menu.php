@@ -14,6 +14,8 @@
   <li class="nav-item">
     <a class="nav-link" href="klusOpdracht_index.php">klusopdracht weergeven.</a>
   </li>
-  
+  <li class="nav-item">
+    <a class="nav-link" href="klusOpdrachten_create.php">klusopdracht Aanmaken.</a>
+  </li>
   
 </ul>
