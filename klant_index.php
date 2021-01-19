@@ -31,6 +31,9 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $item['ID']?></td>
                 <td><?php echo $item['VoorNaam']?></td>
                 <td><?php echo $item['AchterNaam']?></td>
+                <td>
+                <a href="klant_delete.php?id=<?php echo $item['ID']?>">DELETE</a>
+                </td>
             </tr>
         <?php endforeach;?>
     </tbody>
