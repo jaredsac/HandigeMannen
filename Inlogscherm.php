@@ -16,8 +16,12 @@ if(isset($_POST['form_login'])){
   if($database_gegevens != FALSE){
 
         if($database_gegevens['Wachtwoord'] == $password){
+<<<<<<< HEAD
             echo'gebruiker mag inloggen!';
             header('')
+=======
+          header('location: klant_index.php');
+>>>>>>> 9cc1f942d36e29ecb8dc68a8dfc80cd864beddb1
         }
   }
  
@@ -36,7 +40,11 @@ if(isset($_POST['form_login'])){
     <title>HandigeMannen</title>
 </head>
 <body class="text-center">
-    
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link" href="account_create.php">Account aanmaken</a>
+    </li>
+</ul>
     <main class="form-signin">
       <form method="post" action="">
         <h1 class="h3 mb-3 fw-normal"> Sign In</h1>
