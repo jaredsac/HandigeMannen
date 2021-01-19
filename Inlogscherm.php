@@ -17,11 +17,12 @@ if(isset($_POST['form_login'])){
 
         if($database_gegevens['Wachtwoord'] == $password){
             echo'gebruiker mag inloggen!';
+            header('')
         }
   }
  
 }
-
+//0:46:23 tijd
 
 ?>
 
