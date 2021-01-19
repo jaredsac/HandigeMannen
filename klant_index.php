@@ -3,7 +3,7 @@
 
 session_start();
 
-$name = $_SESSION['Naam'];
+$name = $_SESSION['VoorNaam'];
 
 echo 'Welkom' . $name;
 

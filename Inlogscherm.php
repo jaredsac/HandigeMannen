@@ -19,7 +19,7 @@ if(isset($_POST['form_login'])){
           
             session_start();
 
-            $_SESSION['Naam'] = $database_gegevens['Naam'];
+            $_SESSION['VoorNaam'] = $database_gegevens['VoorNaam'];
             
           header('location: klant_index.php');
         }
