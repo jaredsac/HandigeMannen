@@ -5,6 +5,7 @@ session_start();
 $name = $_SESSION['VoorNaam'];
 
 echo 'Welkom ' . $name;
+
 require 'database.php';
 include 'header.php';
 include 'menu.php';
