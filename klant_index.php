@@ -5,11 +5,11 @@ session_start();
 
 $name = $_SESSION['VoorNaam'];
 
-echo 'Welkom' . $name;
+echo 'Welkom ' . $name;
 
 require 'database.php';
 
-$sql = "SELECT * FROM klussen";
+$sql = "SELECT * FROM users";
 $statement = $db_conn->prepare($sql);
 $statement->execute();
 $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -20,15 +20,14 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
 <?php include 'menu.php';?>
 <body>
 <div class="container">
-<h4 class="display-4">KlussenLijst</h4>
+<h4 class="display-4">Klanten</h4>
 <table class="table">
 
     <thead>
         <tr>
-            <th>Klussen</th>
-            <th>Klant</th>
-            <th>Plaats</th>
-            <th>Datum</th>
+            <th>ID</th>
+            <th>Voornaam</th>
+            <th>Achternaam</th>
             <th>DELETE</th>
             <th>UPDATE</th>
         </tr>
@@ -36,10 +35,9 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
     <tbody>
         <?php foreach($database_gegevens as $item):?>
             <tr>
-                <td><?php echo $item['Klussen']?></td>
-                <td><?php echo $item['Klant']?></td>
-                <td><?php echo $item['Plaats']?></td>
-                <td><?php echo $item['Datum']?></td>
+                <td><?php echo $item['ID']?></td>
+                <td><?php echo $item['VoorNaam']?></td>
+                <td><?php echo $item['AchterNaam']?></td>
                 <td>
                 <a href="klant_delete.php?id=<?php echo $item['ID']?>">DELETE</a>
                 </td>
