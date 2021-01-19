@@ -21,7 +21,7 @@ if(isset($_POST['form_login'])){
 
             $_SESSION['VoorNaam'] = $database_gegevens['VoorNaam'];
             
-          header('location: klant_index.php');
+          header('location: klusOpdracht_index.php');
         }
   }
  

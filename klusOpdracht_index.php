@@ -1,5 +1,12 @@
 <?php
 
+
+session_start();
+
+$name = $_SESSION['VoorNaam'];
+
+echo 'Welkom ' . $name;
+
 require 'database.php';
 
 $sql = "SELECT * FROM klussen";
