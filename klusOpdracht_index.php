@@ -13,7 +13,7 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
 <?php include 'menu.php';?>
 <body>
 <div class="container">
-<h4 class="display-4">Klant</h4>
+<h4 class="display-4">klus Opdrachten</h4>
 <table class="table">
 
     <thead>
@@ -35,6 +35,12 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $item['Klant']?></td>
                 <td><?php echo $item['Plaats']?></td>
                 <td><?php echo $item['Datum']?></td>
+                <td>
+                <a href="klusOpdracht_delete.php?id=<?php echo $item['ID']?>">DELETE</a>
+                </td>
+                <td>
+                <a href="klusOpdracht_update.php?id=<?php echo $item['ID']?>">UPDATE</a>
+                </td>
             </tr>
         <?php endforeach;?>
     </tbody>
