@@ -16,13 +16,14 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
  $stmt->bindParam(":ph_Email", $email );
  $stmt->bindParam(":ph_Wachtwoord", $wachtwoord );
  $stmt->execute();
- header('location: Inlogscherm.php');
+ header('location: klant_index.php');
 }
 
 
 
 ?>
 <?php include 'header.php';?>
+<?php include 'menu.php';?>
 <div class="container">
     <h4 class="display-4">Voeg Klant Toe</h4>
     <form action="" method="post">

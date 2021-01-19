@@ -31,7 +31,6 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <td><?php echo $item['ID']?></td>
                 <td><?php echo $item['VoorNaam']?></td>
                 <td><?php echo $item['AchterNaam']?></td>
-                <td>
             </tr>
         <?php endforeach;?>
     </tbody>
