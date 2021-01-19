@@ -16,6 +16,11 @@ if(isset($_POST['form_login'])){
   if($database_gegevens != FALSE){
 
         if($database_gegevens['Wachtwoord'] == $password){
+          
+            session_start();
+
+            $_SESSION['Naam'] = $database_gegevens['Naam'];
+            
           header('location: klant_index.php');
         }
   }
