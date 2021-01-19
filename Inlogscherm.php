@@ -16,12 +16,7 @@ if(isset($_POST['form_login'])){
   if($database_gegevens != FALSE){
 
         if($database_gegevens['Wachtwoord'] == $password){
-<<<<<<< HEAD
-            echo'gebruiker mag inloggen!';
-            header('')
-=======
           header('location: klant_index.php');
->>>>>>> 9cc1f942d36e29ecb8dc68a8dfc80cd864beddb1
         }
   }
  
