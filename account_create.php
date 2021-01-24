@@ -24,7 +24,7 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
 ?>
 <?php include 'header.php';?>
 <div class="container">
-    <h4 class="display-4">Voeg Klant Toe</h4>
+    <h4 class="display-4">Maak account</h4>
     <form action="" method="post">
         <div class="col-6"></div>
         <input type="text" name="VoorNaam" class="form-control" placeholder="Voornaam">
