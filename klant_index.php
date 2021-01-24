@@ -1,5 +1,6 @@
 <?php
 
+  session_start();
 require 'database.php';
 
 $sql = "SELECT * FROM users";
@@ -76,7 +77,11 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            
+          <?php
+            $name = $_SESSION['VoorNaam'];
+
+            echo "Welkom"  . $name;
+          ?>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="klant_index.php">klanten weergeven</a>

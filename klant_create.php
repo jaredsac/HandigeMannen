@@ -1,4 +1,7 @@
 <?php 
+
+  session_start();
+
 require 'database.php';
 
 if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
@@ -84,7 +87,12 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
-        
+
+        <?php
+            $name = $_SESSION['VoorNaam'];
+
+            echo "Welkom"  . $name;
+          ?>
         
           <li class="nav-item">
             <a class="nav-link" href="klant_index.php">klanten weergeven</a>
