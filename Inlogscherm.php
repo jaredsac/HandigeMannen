@@ -27,7 +27,7 @@ if(isset($_POST['form_login'])){
   }
  
 }
-//0:46:23 tijd
+
 
 ?>
 
@@ -51,10 +51,10 @@ if(isset($_POST['form_login'])){
         <label for="form_password" class="visually-hidden">Password</label>
         <input type="password" id="form_password" name="form_password" class="form-control" placeholder="Password" required>
 
-        <button class="w-100 btn btn-lg btn-warning" type="submit" name="form_login">Sign in</button>
+        <button class="w-100 btn btn-lg " Style="background-color: #F6AA1C ;" type="submit" name="form_login">Sign in</button>
         
         <a class="nav-link" href="account_create.php">Account aanmaken</a>
-        <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+        <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
 
       </form>
     </main>
