@@ -76,13 +76,6 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <?php
-                session_start();
-
-                $name = $_SESSION['VoorNaam'];
-
-                echo 'Welkom ' . $name;
-            ?>
             
           </li>
           <li class="nav-item">

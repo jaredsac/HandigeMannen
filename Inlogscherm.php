@@ -17,9 +17,10 @@ if(isset($_POST['form_login'])){
 
         if($database_gegevens['Wachtwoord'] == $password){
           
-            session_start();
+          session_start();
 
-            $_SESSION['VoorNaam'] = $database_gegevens['VoorNaam'];
+          $_SESSION['VoorNaam'] = $database_gegevens['VoorNaam'];
+          
             
           header('location: klusOpdracht_index.php');
         }
@@ -40,11 +41,6 @@ if(isset($_POST['form_login'])){
     <title>HandigeMannen</title>
 </head>
 <body class="text-center">
-<ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link" href="account_create.php">Account aanmaken</a>
-    </li>
-</ul>
     <main class="form-signin">
       <form method="post" action="">
         <h1 class="h3 mb-3 fw-normal"> Sign In</h1>
@@ -56,7 +52,10 @@ if(isset($_POST['form_login'])){
         <input type="password" id="form_password" name="form_password" class="form-control" placeholder="Password" required>
 
         <button class="w-100 btn btn-lg btn-warning" type="submit" name="form_login">Sign in</button>
+        
+        <a class="nav-link" href="account_create.php">Account aanmaken</a>
         <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
+
       </form>
     </main>
     
