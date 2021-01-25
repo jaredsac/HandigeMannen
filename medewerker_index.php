@@ -3,7 +3,7 @@
     session_start();
     require 'database.php';
                     
-    $sql = "SELECT * FROM users WHERE Gebruiker = \"Admin\";";
+    $sql = "SELECT * FROM users WHERE Gebruiker = \"Medewerker\";";
     $statement = $db_conn->prepare($sql);
     $statement->execute();
     $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);

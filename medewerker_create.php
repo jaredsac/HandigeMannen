@@ -98,7 +98,7 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
         <input type="text" name="AchterNaam" class="form-control" placeholder="Achternaam">
         <input type="text" name="Email" class="form-control" placeholder="Email">
         <input type="password" name="Wachtwoord" class="form-control" placeholder="Wachtwoord">
-        <input type="text" name="Gebruiker" class="form-control" value="Admin">
+        <input type="text" name="Gebruiker" class="form-control" value="Medewerker">
         <button type="submit" class=" btn btn-info  mt-3" name="submit">opslaan!</button>
       </div>
     </form>
