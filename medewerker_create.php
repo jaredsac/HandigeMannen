@@ -1,40 +1,33 @@
-<?php
+<?php 
 
-session_start();
+  session_start();
 
 require 'database.php';
-include 'header.php';
-
-
-$id=$_GET['id'];
-$sql = "SELECT * FROM users WHERE ID = :ph_id";
-$statement = $db_conn->prepare($sql);
-$statement->bindParam(":ph_id", $id);
-$statement->execute();
-$database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
-
 
 if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
+    
+    
     $voornaam = $_POST['VoorNaam'];
     $achternaam = $_POST['AchterNaam'];
     $email = $_POST['Email'];
     $wachtwoord = $_POST['Wachtwoord'];
-//UPDATE EEN WAARDE IN EEN DATABASE TABEL
-$sql = "UPDATE users SET VoorNaam = :ph_VoorNaam, AchterNaam = :ph_AchterNaam,
-Email = :ph_Email, Wachtwoord = :ph_Wachtwoord WHERE ID = :ph_id ";
-$stmt = $db_conn->prepare($sql); //stuur naar mysql.
-$stmt->bindParam(":ph_VoorNaam", $voornaam );
-$stmt->bindParam(":ph_AchterNaam", $achternaam );
-$stmt->bindParam(":ph_Email", $email );
-$stmt->bindParam(":ph_Wachtwoord", $wachtwoord );
-$stmt->bindParam(":ph_id", $id );
-$stmt->execute();
-header('location: klant_index.php');
+    $gebruiker = $_POST['Gebruiker'];
+    //ZET WAARDE IN DATABASE
+ $sql = "INSERT INTO users (VoorNaam, AchterNaam, Email, Wachtwoord, Gebruiker) VALUES (:ph_VoorNaam, :ph_AchterNaam, :ph_Email, :ph_Wachtwoord, :ph_Gebruiker)" ;
+ $stmt = $db_conn->prepare($sql); //stuur naar mysql.
+ $stmt->bindParam(":ph_VoorNaam", $voornaam );
+ $stmt->bindParam(":ph_AchterNaam", $achternaam );
+ $stmt->bindParam(":ph_Email", $email );
+ $stmt->bindParam(":ph_Wachtwoord", $wachtwoord );
+ $stmt->bindParam(":ph_Gebruiker", $gebruiker );
+ $stmt->execute();
+ header('location: medewerker_index.php');
 }
 
-?>
 
-    
+
+?>
+<?php include 'header.php';?>
 
 <!doctype html>
 <html lang="en">
@@ -90,33 +83,27 @@ header('location: klant_index.php');
     </li>
   </ul>
 </header>
-
-<?php include 'menu.php';?>
+<?php include "menu.php";?>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-        <h1 class="h2">Update Klant</h1>
+        <h1 class="h2">Voeg Medewerker Toe</h1>
         
       </div>
 
-        <div class="container">
-        <form action="" method="post">
-            <div class="col-6"></div>
-            <input type="text" name="VoorNaam" class="form-control" value="<?php echo $database_gegevens['VoorNaam'];?>">
-            <input type="text" name="AchterNaam" class="form-control" value="<?php echo $database_gegevens['AchterNaam'];?>">
-            <input type="text" name="Email" class="form-control" value="<?php echo $database_gegevens['Email'];?>">
-            <input type="password" name="Wachtwoord" class="form-control">
-            <button type="submit" class=" btn btn-info  mt-3" name="submit">opslaan!</button>
-        </form>
+      <div class="container">
+    <form action="" method="post">
+        <div class="col-6"></div>
+        <input type="text" name="VoorNaam" class="form-control" placeholder="Voornaam">
+        <input type="text" name="AchterNaam" class="form-control" placeholder="Achternaam">
+        <input type="text" name="Email" class="form-control" placeholder="Email">
+        <input type="password" name="Wachtwoord" class="form-control" placeholder="Wachtwoord">
+        <input type="text" name="Gebruiker" class="form-control" value="Admin">
+        <button type="submit" class=" btn btn-info  mt-3" name="submit">opslaan!</button>
+      </div>
+    </form>
     </div>
-      
+        </div>
     </main>
   </div>
 </div>
-
-
-    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-
-      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
-  </body>
-</html>

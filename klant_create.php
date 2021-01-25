@@ -11,13 +11,15 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
     $achternaam = $_POST['AchterNaam'];
     $email = $_POST['Email'];
     $wachtwoord = $_POST['Wachtwoord'];
+    $gebruiker = $_POST['Gebruiker'];
     //ZET WAARDE IN DATABASE
- $sql = "INSERT INTO users (VoorNaam, AchterNaam, Email, Wachtwoord) VALUES (:ph_VoorNaam, :ph_AchterNaam, :ph_Email, :ph_Wachtwoord)" ;
+ $sql = "INSERT INTO users (VoorNaam, AchterNaam, Email, Wachtwoord, Gebruiker) VALUES (:ph_VoorNaam, :ph_AchterNaam, :ph_Email, :ph_Wachtwoord, :ph_Gebruiker)" ;
  $stmt = $db_conn->prepare($sql); //stuur naar mysql.
  $stmt->bindParam(":ph_VoorNaam", $voornaam );
  $stmt->bindParam(":ph_AchterNaam", $achternaam );
  $stmt->bindParam(":ph_Email", $email );
  $stmt->bindParam(":ph_Wachtwoord", $wachtwoord );
+ $stmt->bindParam(":ph_Gebruiker", $gebruiker );
  $stmt->execute();
  header('location: klant_index.php');
 }
@@ -82,37 +84,7 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
   </ul>
 </header>
 
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
-
-        <?php
-            $name = $_SESSION['VoorNaam'];
-
-            echo "Welkom"  . $name;
-          ?>
-        
-          <li class="nav-item">
-            <a class="nav-link" href="klant_index.php">klanten weergeven</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="klant_create.php">Klant aanmaken.</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="medewerker_index.php">medewerker weergeven.</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="klusOpdracht_index.php">klusopdracht weergeven.</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="klusOpdrachten_create.php">klusopdracht Aanmaken.</a>
-          </li>
-        </ul>
-
-        
-    </nav>
+<?php include 'menu.php';?>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
@@ -127,6 +99,7 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
         <input type="text" name="AchterNaam" class="form-control" placeholder="Achternaam">
         <input type="text" name="Email" class="form-control" placeholder="Email">
         <input type="password" name="Wachtwoord" class="form-control" placeholder="Wachtwoord">
+        <input type="text" name="Gebruiker" class="form-control" value="Klant">
         <button type="submit" class=" btn btn-info  mt-3" name="submit">opslaan!</button>
       </div>
     </form>
