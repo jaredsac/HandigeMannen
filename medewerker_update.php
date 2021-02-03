@@ -1,18 +1,40 @@
 <?php
-            
-    session_start();
-    require 'database.php';
-                    
-    $sql = "SELECT * FROM users WHERE Gebruiker = \"Medewerker\";";
-    $statement = $db_conn->prepare($sql);
-    $statement->execute();
-    $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
-                    
-                    ?>
-<?php include 'header.php';?>
+
+session_start();
+
+require 'database.php';
+include 'header.php';
 
 
-  
+$id=$_GET['id'];
+$sql = "SELECT * FROM users WHERE ID = :ph_id";
+$statement = $db_conn->prepare($sql);
+$statement->bindParam(":ph_id", $id);
+$statement->execute();
+$database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
+    $voornaam = $_POST['VoorNaam'];
+    $achternaam = $_POST['AchterNaam'];
+    $email = $_POST['Email'];
+    $wachtwoord = $_POST['Wachtwoord'];
+//UPDATE EEN WAARDE IN EEN DATABASE TABEL
+$sql = "UPDATE users SET VoorNaam = :ph_VoorNaam, AchterNaam = :ph_AchterNaam,
+Email = :ph_Email, Wachtwoord = :ph_Wachtwoord WHERE ID = :ph_id ";
+$stmt = $db_conn->prepare($sql); //stuur naar mysql.
+$stmt->bindParam(":ph_VoorNaam", $voornaam );
+$stmt->bindParam(":ph_AchterNaam", $achternaam );
+$stmt->bindParam(":ph_Email", $email );
+$stmt->bindParam(":ph_Wachtwoord", $wachtwoord );
+$stmt->bindParam(":ph_id", $id );
+$stmt->execute();
+header('location: medewerker_index.php');
+}
+
+?>
+
+    
 
 <!doctype html>
 <html lang="en">
@@ -20,7 +42,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
@@ -69,44 +90,26 @@
     </li>
   </ul>
 </header>
+
 <?php include 'menu.php';?>
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 ">
-        <h1 class="h2"> Medewerkers</h1>
+        <h1 class="h2">Update Klant</h1>
         
       </div>
 
-      <div class="table-responsive">
-        <table class="table table-striped table-sm">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Voornaam</th>
-            <th>Achternaam</th>
-            <th>Gebruiker</th>
-            <th>DELETE</th>
-            <th>UPDATE</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($database_gegevens as $item):?>
-            <tr>
-                <td><?php echo $item['ID']?></td>
-                <td><?php echo $item['VoorNaam']?></td>
-                <td><?php echo $item['AchterNaam']?></td>
-                <td><?php echo $item['Gebruiker']?></td>
-                <td>
-                <a href="medewerker_delete.php?id=<?php echo $item['ID']?>">DELETE</a>
-                </td>
-                <td>
-                <a href="medewerker_update.php?id=<?php echo $item['ID']?>">UPDATE</a>
-                </td>
-            </tr>
-        <?php endforeach;?>
-    </tbody>
-        </table>
-      </div>
+        <div class="container">
+        <form action="" method="post">
+            <div class="col-6"></div>
+            <input type="text" name="VoorNaam" class="form-control" value="<?php echo $database_gegevens['VoorNaam'];?>">
+            <input type="text" name="AchterNaam" class="form-control" value="<?php echo $database_gegevens['AchterNaam'];?>">
+            <input type="text" name="Email" class="form-control" value="<?php echo $database_gegevens['Email'];?>">
+            <input type="password" name="Wachtwoord" class="form-control">
+            <button type="submit" class=" btn btn-info  mt-3" name="submit">opslaan!</button>
+        </form>
+    </div>
+      
     </main>
   </div>
 </div>
