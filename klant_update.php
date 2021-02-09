@@ -14,7 +14,7 @@ $statement->execute();
 $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
+if(isset ($_POST['submit']) && $_POST['Email'] !=""){
     $voornaam = $_POST['VoorNaam'];
     $achternaam = $_POST['AchterNaam'];
     $email = $_POST['Email'];

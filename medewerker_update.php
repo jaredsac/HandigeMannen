@@ -14,7 +14,7 @@ $statement->execute();
 $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
+if(isset ($_POST['submit']) && $_POST['Email'] !=""){
     $voornaam = $_POST['VoorNaam'];
     $achternaam = $_POST['AchterNaam'];
     $email = $_POST['Email'];
@@ -105,7 +105,7 @@ header('location: medewerker_index.php');
             <input type="text" name="VoorNaam" class="form-control" value="<?php echo $database_gegevens['VoorNaam'];?>">
             <input type="text" name="AchterNaam" class="form-control" value="<?php echo $database_gegevens['AchterNaam'];?>">
             <input type="text" name="Email" class="form-control" value="<?php echo $database_gegevens['Email'];?>">
-            <input type="password" name="Wachtwoord" class="form-control">
+            <input type="password" name="Wachtwoord" class="form-control" placeholder= "Password">
             <button type="submit" class=" btn btn-info  mt-3" name="submit">opslaan!</button>
         </form>
     </div>

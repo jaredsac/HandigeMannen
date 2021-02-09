@@ -14,7 +14,7 @@ $statement->execute();
 $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-if(isset ($_POST['submit']) && $_POST['Klussen'] && $_POST['Klant'] && $_POST['Plaats'] !=""){
+if(isset ($_POST['submit']) && $_POST['Klussen'] && $_POST['Klant'] !=""){
     $klus = $_POST['Klussen'];
     $klant = $_POST['Klant'];
     $plaats = $_POST['Plaats'];
