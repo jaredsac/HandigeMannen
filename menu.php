@@ -7,7 +7,7 @@
           <?php
             $name = $_SESSION['VoorNaam'];
 
-            echo "Welkom"  . $name;
+            echo "Welkom "  . $name;
             ?>
           </li>
           <li class="nav-item">

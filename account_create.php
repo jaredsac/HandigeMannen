@@ -8,13 +8,15 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
     $achternaam = $_POST['AchterNaam'];
     $email = $_POST['Email'];
     $wachtwoord = $_POST['Wachtwoord'];
+    $gebruiker = $_POST['Gebruiker'];
     //ZET WAARDE IN DATABASE
- $sql = "INSERT INTO users (VoorNaam, AchterNaam, Email, Wachtwoord) VALUES (:ph_VoorNaam, :ph_AchterNaam, :ph_Email, :ph_Wachtwoord)" ;
+ $sql = "INSERT INTO users (VoorNaam, AchterNaam, Email, Wachtwoord, Gebruiker) VALUES (:ph_VoorNaam, :ph_AchterNaam, :ph_Email, :ph_Wachtwoord, :ph_Gebruiker)" ;
  $stmt = $db_conn->prepare($sql); //stuur naar mysql.
  $stmt->bindParam(":ph_VoorNaam", $voornaam );
  $stmt->bindParam(":ph_AchterNaam", $achternaam );
  $stmt->bindParam(":ph_Email", $email );
  $stmt->bindParam(":ph_Wachtwoord", $wachtwoord );
+ $stmt->bindParam(":ph_Gebruiker", $gebruiker );
  $stmt->execute();
  header('location: Inlogscherm.php');
 }
@@ -85,6 +87,11 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
               <input type="text" name="AchterNaam" class="form-control" placeholder="Achternaam" required>
             </div>
 
+            <div class="col-sm-6">
+              <label for="lastName" class="form-label">Klant of Medewerker</label>
+              <input type="text" name="Gebruiker" class="form-control" placeholder="Klant of Medewerker" required>
+            </div>
+
             <div class="col-12">
               <label for="email" class="form-label">Email</label>
               <input type="text" name="Email" class="form-control" placeholder="Email">
@@ -110,11 +117,6 @@ if(isset ($_POST['submit']) && $_POST['Email'] && $_POST['Wachtwoord'] !=""){
 
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2021 Klusbedrijf handige Mannen</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
   </footer>
 </div>
 
