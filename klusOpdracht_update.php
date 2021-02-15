@@ -7,9 +7,9 @@ include 'header.php';
 
 
 $id=$_GET['id'];
-$sql = "SELECT * FROM klussen WHERE ID = :ph_id";
+$sql = "SELECT * FROM klussen WHERE Klussen_ID = :ph_Klussen_ID";
 $statement = $db_conn->prepare($sql);
-$statement->bindParam(":ph_id", $id);
+$statement->bindParam(":ph_Klussen_ID", $id);
 $statement->execute();
 $database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -21,13 +21,13 @@ if(isset ($_POST['submit']) && $_POST['Klussen'] && $_POST['Klant'] !=""){
     $datum = $_POST['Datum'];
 //UPDATE EEN WAARDE IN EEN DATABASE TABEL
 $sql = "UPDATE klussen SET Klussen = :ph_klus, Klant = :ph_Klant,
-Plaats = :ph_Plaats, Datum = :ph_Datum WHERE ID = :ph_id ";
+Plaats = :ph_Plaats, Datum = :ph_Datum WHERE Klussen_ID = :ph_Klussen_ID ";
 $stmt = $db_conn->prepare($sql); //stuur naar mysql.
 $stmt->bindParam(":ph_klus", $klus );
 $stmt->bindParam(":ph_Klant", $klant );
 $stmt->bindParam(":ph_Plaats", $plaats );
 $stmt->bindParam(":ph_Datum", $datum );
-$stmt->bindParam(":ph_id", $id );
+$stmt->bindParam(":ph_Klussen_ID", $id );
 $stmt->execute();
 header('location: klusOpdracht_index.php');
 }
@@ -103,7 +103,6 @@ header('location: klusOpdracht_index.php');
     <form action="" method="post">
         <div class="col-6"></div>
         <input type="text" name="Klussen" class="form-control" value="<?php echo $database_gegevens['Klussen'];?>">
-        <input type="text" name="Klant" class="form-control" value="<?php echo $database_gegevens['Klant'];?>">
         <input type="text" name="Plaats" class="form-control" value="<?php echo $database_gegevens['Plaats'];?>">
         <input type="text" name="Datum" class="form-control" value="<?php echo $database_gegevens['Datum'];?>">
         <button type="submit" class=" btn btn-info  mt-3" name="submit">opslaan!</button>

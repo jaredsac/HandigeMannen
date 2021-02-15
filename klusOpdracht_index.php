@@ -93,16 +93,16 @@ $database_gegevens = $statement->fetchAll(PDO::FETCH_ASSOC);
     <tbody>
         <?php foreach($database_gegevens as $item):?>
             <tr>
-                <td><?php echo $item['ID']?></td>
+                
                 <td><?php echo $item['Klussen']?></td>
                 <td><?php echo $item['VoorNaam']?></td>
                 <td><?php echo $item['Plaats']?></td>
                 <td><?php echo $item['Datum']?></td>
                 <td>
-                <a href="klusOpdracht_delete.php?id=<?php echo $item['ID']?>">DELETE</a>
+                <a href="klusOpdracht_delete.php?id=<?php echo $item['Klussen_ID']?>">DELETE</a>
                 </td>
                 <td>
-                <a href="klusOpdracht_update.php?id=<?php echo $item['ID']?>">UPDATE</a>
+                <a href="klusOpdracht_update.php?id=<?php echo $item['Klussen_ID']?>">UPDATE</a>
                 </td>
             </tr>
         <?php endforeach;?>

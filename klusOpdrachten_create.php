@@ -98,7 +98,7 @@ header('location: klusOpdracht_index.php');
       <div class="container">
     <form action="" method="post">
         <div class="col-6"></div>
-        <input type="text" name="Klussen" class="form-control" placeholder = "KLussen" >
+        <input type="text" name="Klussen" class="form-control" placeholder = "Klussen" >
 
         <select name="users" id="users">
           <?php foreach ($database_gegevens as $row): ?>
