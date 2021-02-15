@@ -6,23 +6,22 @@ require 'database.php';
 include 'header.php';
 
 
-$sql = "SELECT * FROM klussen";
+$sql = "SELECT * FROM users WHERE Gebruiker = \"Klant\";";
 $statement = $db_conn->prepare($sql);
-$statement->bindParam(":ph_id", $id);
 $statement->execute();
-$database_gegevens = $statement->fetch(PDO::FETCH_ASSOC);
+$database_gegevens = $statement->fetchALL(PDO::FETCH_ASSOC);
 
 
-if(isset ($_POST['submit']) && $_POST['Klussen'] && $_POST['Klant'] && $_POST['Plaats'] !=""){
+if(isset ($_POST['submit']) && $_POST['Klussen'] && $_POST['users'] && $_POST['Plaats'] !=""){
     $klus = $_POST['Klussen'];
-    $klant = $_POST['Klant'];
+    $klant = $_POST['users'];
     $plaats = $_POST['Plaats'];
     $datum = $_POST['Datum'];
 //UPDATE EEN WAARDE IN EEN DATABASE TABEL
-$sql = "INSERT INTO klussen (Klussen, Klant, Plaats, Datum) VALUES (:ph_klus, :ph_Klant, :ph_Plaats, :ph_Datum)" ;
+$sql = "INSERT INTO klussen (Klussen, Klant, Plaats, Datum) VALUES (:ph_klus, :ph_users, :ph_Plaats, :ph_Datum)" ;
 $stmt = $db_conn->prepare($sql); //stuur naar mysql.
 $stmt->bindParam(":ph_klus", $klus );
-$stmt->bindParam(":ph_Klant", $klant );
+$stmt->bindParam(":ph_users", $klant );
 $stmt->bindParam(":ph_Plaats", $plaats );
 $stmt->bindParam(":ph_Datum", $datum );
 $stmt->execute();
@@ -100,7 +99,13 @@ header('location: klusOpdracht_index.php');
     <form action="" method="post">
         <div class="col-6"></div>
         <input type="text" name="Klussen" class="form-control" placeholder = "KLussen" >
-        <input type="text" name="Klant" class="form-control" placeholder = "Klant" >
+
+        <select name="users" id="users">
+          <?php foreach ($database_gegevens as $row): ?>
+            <option value="<?=$row["ID"]?>"><?=$row["VoorNaam"]?></option>
+          <?php endforeach ?>
+        </select>
+
         <input type="text" name="Plaats" class="form-control" placeholder = "Plaats" >
         <input type="text" name="Datum" class="form-control" placeholder = "Datum">
         <button type="submit" class=" btn btn-info  mt-3" name="submit">opslaan!</button>
@@ -112,7 +117,7 @@ header('location: klusOpdracht_index.php');
 </div>
 
 
-    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="/docs/5.0/dist/js/bootstra p.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
   </body>
